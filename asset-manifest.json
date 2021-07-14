@@ -1,23 +1,25 @@
 {
   "files": {
-    "main.css": "/narra1522/static/css/main.a617e044.chunk.css",
-    "main.js": "/narra1522/static/js/main.04f674fa.chunk.js",
-    "main.js.map": "/narra1522/static/js/main.04f674fa.chunk.js.map",
-    "runtime-main.js": "/narra1522/static/js/runtime-main.3d03d335.js",
-    "runtime-main.js.map": "/narra1522/static/js/runtime-main.3d03d335.js.map",
-    "static/js/2.b0420e55.chunk.js": "/narra1522/static/js/2.b0420e55.chunk.js",
-    "static/js/2.b0420e55.chunk.js.map": "/narra1522/static/js/2.b0420e55.chunk.js.map",
-    "static/js/3.fbf59ea6.chunk.js": "/narra1522/static/js/3.fbf59ea6.chunk.js",
-    "static/js/3.fbf59ea6.chunk.js.map": "/narra1522/static/js/3.fbf59ea6.chunk.js.map",
+    "main.css": "/narra1522/static/css/main.69232488.chunk.css",
+    "main.js": "/narra1522/static/js/main.7114ec11.chunk.js",
+    "main.js.map": "/narra1522/static/js/main.7114ec11.chunk.js.map",
+    "runtime-main.js": "/narra1522/static/js/runtime-main.a5f5570a.js",
+    "runtime-main.js.map": "/narra1522/static/js/runtime-main.a5f5570a.js.map",
+    "static/css/2.081f420c.chunk.css": "/narra1522/static/css/2.081f420c.chunk.css",
+    "static/js/2.565c9eb0.chunk.js": "/narra1522/static/js/2.565c9eb0.chunk.js",
+    "static/js/2.565c9eb0.chunk.js.map": "/narra1522/static/js/2.565c9eb0.chunk.js.map",
+    "static/js/3.1bdcffcd.chunk.js": "/narra1522/static/js/3.1bdcffcd.chunk.js",
+    "static/js/3.1bdcffcd.chunk.js.map": "/narra1522/static/js/3.1bdcffcd.chunk.js.map",
     "index.html": "/narra1522/index.html",
-    "static/css/main.a617e044.chunk.css.map": "/narra1522/static/css/main.a617e044.chunk.css.map",
-    "static/js/2.b0420e55.chunk.js.LICENSE.txt": "/narra1522/static/js/2.b0420e55.chunk.js.LICENSE.txt",
-    "static/media/logo.6ce24c58.svg": "/narra1522/static/media/logo.6ce24c58.svg"
+    "static/css/2.081f420c.chunk.css.map": "/narra1522/static/css/2.081f420c.chunk.css.map",
+    "static/css/main.69232488.chunk.css.map": "/narra1522/static/css/main.69232488.chunk.css.map",
+    "static/js/2.565c9eb0.chunk.js.LICENSE.txt": "/narra1522/static/js/2.565c9eb0.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.3d03d335.js",
-    "static/js/2.b0420e55.chunk.js",
-    "static/css/main.a617e044.chunk.css",
-    "static/js/main.04f674fa.chunk.js"
+    "static/js/runtime-main.a5f5570a.js",
+    "static/css/2.081f420c.chunk.css",
+    "static/js/2.565c9eb0.chunk.js",
+    "static/css/main.69232488.chunk.css",
+    "static/js/main.7114ec11.chunk.js"
   ]
 }
