@@ -12,16 +12,12 @@
 .coltestata
 {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   padding: 12px 0;
   text-align: center;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-style: solid;
-  border-radius: 1px;
-  border-width: 1px;
-  border-color: black;
 }
 
 .hr-graphbox
@@ -32,15 +28,11 @@
 .hc-graphbox
 {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   padding: 12px 0;
   text-align: center;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-style: solid;
-  border-radius: 1px;
-  border-width: 1px;
-  border-color: black; 
 }
 
