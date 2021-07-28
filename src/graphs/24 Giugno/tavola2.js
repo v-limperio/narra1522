@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
 import * as d3 from "d3";
+import { fcumsum } from 'd3';
 
-const Chiamate1522 = () => {
+const Tavola2 = () => {
     const ref = useRef();
     var margin = { top: 50, right: 150, bottom: 80, left: 90 },
         width = 1460 - margin.left - margin.right,
         height = 650 - margin.top - margin.bottom
-
 
     const github_gists = [
         "https://raw.githubusercontent.com/v-limperio/CAV_1522/main/24_Giugno/Tavola-2/Tavola-2-2018.csv",
@@ -166,4 +166,4 @@ const Chiamate1522 = () => {
         <svg ref={ref} />
     );
 }
-export default Chiamate1522;
+export default Tavola2;
