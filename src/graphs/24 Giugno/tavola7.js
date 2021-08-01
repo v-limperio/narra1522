@@ -14,24 +14,36 @@ const Tavola7 = () => {
     React.useEffect(() => {
         d3.csv(github_gist, function (d) {
             return {
-                data: new Date(d.data),
-                chiamate_2013: +d.chiamate_2013,
-                chiamate_2014: +d.chiamate_2014,
-                chiamate_2015: +d.chiamate_2015,
-                chiamate_2016: +d.chiamate_2016,
-                chiamate_2017: +d.chiamate_2017,
-                chiamate_2018: +d.chiamate_2018,
-                chiamate_2019: +d.chiamate_2019,
-                chiamate_2020: +d.chiamate_2020,
+                intervallo_date2013: new Date(d.intervallo_date2013),
+                chiamate_valide2013: +d.chiamate_valide2013,
+
+                intervallo_date2014: new Date(d.intervallo_date2014),
+                chiamate_valide2014: +d.chiamate_valide2014,
+
+                intervallo_date2015: new Date(d.intervallo_date2015),
+                chiamate_valide2015: +d.chiamate_valide2015,
+
+                intervallo_date2016: new Date(d.intervallo_date2016),
+                chiamate_valide2016: +d.chiamate_valide2016,
+
+                intervallo_date2017: new Date(d.intervallo_date2017),
+                chiamate_valide2017: +d.chiamate_valide2017,
+
+                intervallo_date2018: new Date(d.intervallo_date2018),
+                chiamate_valide2018: +d.chiamate_valide2018,
+
+                intervallo_date2019: new Date(d.intervallo_date2019),
+                chiamate_valide2019: +d.chiamate_valide2019,
+
+                intervallo_date2020: new Date(d.intervallo_date2020),
+                chiamate_valide2020: +d.chiamate_valide2020,
             }
         }).then(
             function (allData) {
                 const chiamate = allData;
                 const format = d3.timeFormat("%Y-%m-%d");
                 var keys = chiamate.columns.slice(1);
-
-                console.log(d3.extent(chiamate, d => d.data));
-
+                
                 //SVG
                 const svg = d3
                     .select(ref.current)
@@ -55,7 +67,7 @@ const Tavola7 = () => {
                 //Scale per Asse x
                 var x = d3
                     .scaleUtc()
-                    .domain(d3.extent(chiamate, d => d.data))
+                    .domain(d3.extent(chiamate, d => d.intervallo_date2020))
                     .range([margin.left, width - margin.right]);
                 //Asse x
                 svg.append("g")
@@ -85,8 +97,8 @@ const Tavola7 = () => {
                     .attr("stroke", "steelblue")
                     .attr("stroke-width", 2)
                     .attr("d", d3.line()
-                        .x(function(d) {return x(d.data)})
-                        .y(function(d) {return y(d.chiamate_2020)})
+                        .x(function(d) {return x(d.intervallo_date2020)})
+                        .y(function(d) {return y(d.chiamate_valide2013)})
                         );
 
             }
