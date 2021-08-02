@@ -61,7 +61,8 @@ const App = () => {
         </Col>
       </Row>
       <Row className="hr-graphbox">
-        <Col md className="hc-graphbox">
+        <Col md className="hr-graphbox">
+        <select id="selectAnno"></select>
         <MotivoChiamata1522 />
         </Col>
       </Row>
