@@ -36,8 +36,8 @@ const TotaleChiamate1522 = () => {
                         .select(ref.current)
                         .classed("svg-container", true)
                         .attr("class", "svg-content-responsive")
-                        .attr("width", "100%")
-                        .attr("height", "100%")
+                        .attr("width", width + margin.left + margin.right)
+                        .attr("height", height + margin.top + margin.bottom)
                         .attr("viewBox", "0 0 650 550")
                         .append("g")
                         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -62,12 +62,12 @@ const TotaleChiamate1522 = () => {
                     var x = d3
                         .scaleBand()
                         .domain(totale_chiamate.map(d => d[groupKey]))
-                        .range([margin.left, width - margin.right])
+                        .range([0, width])
                         .paddingInner(0.1);
                     //Asse x
                     svg.append("g")
                         .attr("class", "xAxis")
-                        .attr("transform", `translate(0,${height - margin.bottom})`)
+                        .attr("transform", `translate(0,${height})`)
                         .style("font-size", 12)
                         .call(d3.axisBottom(x));
 
@@ -82,11 +82,10 @@ const TotaleChiamate1522 = () => {
                     var y = d3
                         .scaleLinear()
                         .domain([0, d3.max(totale_chiamate, d => d3.max(keys, key => d[key]))]).nice()
-                        .range([height - margin.bottom, margin.top]);
+                        .range([height, 0]);
                     //Asse y
                     svg.append("g")
                         .attr("class", "yAxis")
-                        .attr("transform", `translate(${margin.left},0)`)
                         .style("font-size", 12)
                         .call(d3.axisLeft(y))
                         .call(g => g.select(".domain").remove());
@@ -108,6 +107,8 @@ const TotaleChiamate1522 = () => {
                         .append("title")
                         .text(d => `Canale: ${d.key}
 Contatti: ${d.value}`);
+
+                    //Animazioni
                 },
             );
     });
