@@ -45,8 +45,8 @@ const TotaleChiamate1522 = () => {
                     //Legenda
                     svg.append("circle").attr("cx", 150).attr("cy", 15).attr("r", 6).style("fill", "#98abc5")
                     svg.append("text").attr("x", 160).attr("y", 15).text("Chiamata telefonica").style("font-size", "15px").attr("alignment-baseline", "middle")
-                    svg.append("circle").attr("cx", 350).attr("cy", 15).attr("r", 6).style("fill", "#6b486b")
-                    svg.append("text").attr("x", 360).attr("y", 15).text("Chat").style("font-size", "15px").attr("alignment-baseline", "middle")
+                    svg.append("circle").attr("cx", 320).attr("cy", 15).attr("r", 6).style("fill", "#6b486b")
+                    svg.append("text").attr("x", 330).attr("y", 15).text("Chat").style("font-size", "15px").attr("alignment-baseline", "middle")
 
                     //TITOLO
                     svg.append("text")
