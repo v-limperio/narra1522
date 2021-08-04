@@ -20,9 +20,15 @@
   align-items: center;
 }
 
-.hr-graphbox
+.MotivoChiamata1522TitleBox
 {
-  position: relative; 
+  width: 100%;
+  height: 100%;
+  padding: 12px 12px;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .hc-graphbox
