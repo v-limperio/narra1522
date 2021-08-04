@@ -5,7 +5,7 @@ import * as d3 from "d3";
 const MotivoChiamata1522 = () => {
     const ref = useRef();
     const github_gist = "https://raw.githubusercontent.com/v-limperio/CAV_1522/main/json/24%20Giugno/Tavola-2.json";
-    var margin = { top: 40, right: 10, bottom: 70, left: 40 },
+    var margin = { top: 40, right: 70, bottom: 70, left: 40 },
         width = 1300 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom
 
@@ -22,9 +22,13 @@ const MotivoChiamata1522 = () => {
         ]).then(
             function (allData) {
                 var chiamate = allData[0].filter(d => d.motivo_chiamata !== "Totale valide"),
-                    chiamate_anni = new Set(chiamate.map(d => d.anno));
+                    chiamate_anni = new Set(chiamate.map(d => d.anno)),
+                    chiamate_data = Object.keys(chiamate[0]).slice(2);
 
-                console.log(chiamate);
+                const colors = d3
+                    .scaleOrdinal()
+                    .domain(chiamate_data)
+                    .range(["#98abc5", "#6b486b"]);
 
                 //Genero l'svg
                 const svg = d3
@@ -33,7 +37,7 @@ const MotivoChiamata1522 = () => {
                     .attr("class", "svg-content-responsive")
                     .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
-                    .attr("viewBox", "0 0 1400 550")
+                    .attr("viewBox", "0 0 1300 550")
                     .append("g")
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -41,6 +45,15 @@ const MotivoChiamata1522 = () => {
                 d3.select("#selectAnno")
                     .selectAll('myOptions')
                     .data(chiamate_anni)
+                    .enter()
+                    .append('option')
+                    .text(d => d)
+                    .attr("value", d => d);
+
+                //Selettore
+                d3.select("#selectData")
+                    .selectAll('myOptions')
+                    .data(chiamate_data)
                     .enter()
                     .append('option')
                     .text(d => d)
@@ -56,19 +69,29 @@ const MotivoChiamata1522 = () => {
                 //Asse Y
                 var y = d3
                     .scaleLinear()
-                    .domain([0, d3.max(chiamate, d => d.chiamata_telefonica)])
                     .range([height, 0]);
 
                 const bar = svg.append("g")
                     .selectAll("g");
 
                 //Aggiornamento per anno
-                function update(selectedGroup) {
+                function update(selectedAnno, selectedData) {
 
-                    svg.selectAll("rect").remove();
-                    svg.selectAll(".title").remove();
+                    d3.select(".MotivoChiamata1522Title").remove();
+                    svg.selectAll(".MotivoChiamataBar").remove();
                     svg.selectAll(".xAxis").remove();
                     svg.selectAll(".yAxis").remove();
+
+                    //TITOLO
+                    d3.select(".MotivoChiamata1522TitleBox")
+                        .append("text")
+                        .attr("class", "MotivoChiamata1522Title")
+                        .attr("x", (width / 2))
+                        .attr("y", 0 - (margin.top / 2))
+                        .attr("text-anchor", "middle")
+                        .style("font-size", "16px")
+                        .style("text-decoration", "underline")
+                        .text("Motivazioni dei contatti validi al servizio 1522.");
 
                     svg.append("g")
                         .attr("class", "xAxis")
@@ -78,53 +101,73 @@ const MotivoChiamata1522 = () => {
                         .selectAll(".tick text")
                         .call(wrap, x.bandwidth());
 
+                    y.domain([0, d3.max(chiamate, d => d[selectedData])])
+
                     svg.append("g")
                         .attr("class", "yAxis")
                         .style("font-size", 12)
-                        .call(d3.axisLeft(y))
-                        .call(g => g.select(".domain").remove());
+                        .transition()
+                        .duration(1000)
+                        .call(d3.axisLeft(y));
 
-                    //TITOLO
-                    svg.append("text")
-                        .attr("class", "title")
-                        .attr("x", (width / 2))
-                        .attr("y", 0 - (margin.top / 2))
-                        .attr("text-anchor", "middle")
-                        .style("font-size", "16px")
-                        .style("text-decoration", "underline")
-                        .text("Motivazioni dei contatti validi al servizio 1522. Anno: " + selectedGroup);
-
-                    var chiamateFilter = d3.filter(chiamate, d => d.anno == selectedGroup);
-                    console.log(chiamateFilter);
+                    var chiamateFilter = d3.filter(chiamate, d => d.anno == selectedAnno);
 
                     bar
                         .data(chiamateFilter)
                         .enter()
                         .append("rect")
+                        .attr("class", "MotivoChiamataBar")
                         .attr("x", d => x(d.motivo_chiamata))
                         .attr("y", d => y(0))
                         .attr("width", x.bandwidth())
                         .attr("height", d => height - y(0))
-                        .attr("fill", "#98abc5")
                         .append("title")
-                        .text(d => `${d.motivo_chiamata}
-Chiamate: ${d.chiamata_telefonica}`);
+                        .text(d => `
+Anno: ${selectedAnno}
+Motivo: ${d.motivo_chiamata}
+Contatti: (${selectedData}) : ${d[selectedData]}`);
+
+                    updateColor(selectedData);
 
                     //Animation
-                    svg.selectAll("rect")
+                    svg.selectAll(".MotivoChiamataBar")
                         .transition()
                         .duration(1000)
-                        .attr("y", d => y(d.chiamata_telefonica))
-                        .attr("height", d => y(0) - y(d.chiamata_telefonica));
+                        .attr("y", d => y(d[selectedData]))
+                        .attr("height", d => y(0) - y(d[selectedData]));
+                }
+
+                function updateColor(selectedData)
+                {
+                    if(selectedData == "chat")
+                    {
+                        d3.selectAll(".MotivoChiamataBar")
+                        .style("fill", "#6b486b");
+                    }
+                    else
+                    {
+                        d3.selectAll(".MotivoChiamataBar")
+                        .style("fill", "#98abc5");
+                    }
                 }
 
                 //Cambiamento selezione
                 d3.select("#selectAnno").on("change", function (d) {
                     var selectedAnno = d3.select(this).property("value");
-                    update(selectedAnno);
+                    var selectedData = d3.select("#selectData").property("value");
+                    update(selectedAnno, selectedData);
                 });
 
-                update("2018");
+                //Cambiamento selezione
+                d3.select("#selectData").on("change", function (d) {
+                    var selectedAnno = d3.select("#selectAnno").property("value");
+                    var selectedData = d3.select(this).property("value");
+
+                    update(selectedAnno, selectedData);
+                    updateColor(selectedData);
+                });
+
+                update("2018","chiamata_telefonica");
 
                 //Funzione di Wrap per le etichette troppo lunghe 
                 function wrap(text, width) {
