@@ -99,16 +99,22 @@ const TotaleChiamate1522 = () => {
                         .selectAll("rect")
                         .data(d => keys.map(key => ({ key, value: d[key] })))
                         .join("rect")
+                        .attr("class", "TotaleChiamateBar")
                         .attr("x", d => x1(d.key))
-                        .attr("y", d => y(d.value))
+                        .attr("y", d => y(0))
                         .attr("width", x1.bandwidth())
-                        .attr("height", d => y(0) - y(d.value))
+                        .attr("height", d => height - y(0))
                         .attr("fill", d => colors(d.key))
                         .append("title")
                         .text(d => `Canale: ${d.key}
 Contatti: ${d.value}`);
 
-                    //Animazioni
+                    //Animation
+                    svg.selectAll(".TotaleChiamateBar")
+                        .transition()
+                        .duration(1000)
+                        .attr("y", d => y(d.value))
+                        .attr("height", d => y(0) - y(d.value));
                 },
             );
     });
