@@ -13,8 +13,9 @@ const App = () => {
 
       <Row className="testata">
         <Col className="coltestata">
-          <h1>Heading</h1>
-          <h3>Prova Grafico (Verticale)</h3>
+          <h1>Capitolo 1</h1>
+          <h2>Heading</h2>
+          <h4>Prova Grafico (Verticale)</h4>
           <p>
             Lorem ipsum dolor sit amet,
             consectetur adipiscing elit,
@@ -41,8 +42,8 @@ const App = () => {
 
       <Row className="testata">
         <Col className="coltestata">
-          <h1>Heading</h1>
-          <h3>Prova Grafico (Orizzontale)</h3>
+          <h2>Heading</h2>
+          <h4>Prova Grafico (Orizzontale)</h4>
           <p>
             Lorem ipsum dolor sit amet,
             consectetur adipiscing elit,
@@ -81,8 +82,9 @@ const App = () => {
 
       <Row className="testata">
         <Col className="coltestata">
-          <h1>Heading</h1>
-          <h3>Prova Grafico (Orizzontale)</h3>
+          <h1>Capitolo 2</h1>
+          <h2>Heading</h2>
+          <h4>Prova Grafico (Verticale)</h4>
           <p>
             Lorem ipsum dolor sit amet,
             consectetur adipiscing elit,
